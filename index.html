@@ -1,15 +1,282 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Simovo First Web Page</title>
+    <title>Sima Prvni Webovkaonov</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #1C2526; /* Černé pozadí z alba */
+            color: #fff; /* Bílý text pro čitelnost */
+        }
+        /* Styl pro vršek stránky */
+        .header {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(45deg, #1C2526, #333); /* Gradient od černé k šedé */
+            border-bottom: 3px solid #A41623; /* Červená linka z obalu */
+            box-shadow: 0 0 15px rgba(164, 22, 35, 0.5); /* Červený neonový stín */
+        }
+        h1 {
+            font-size: 3.5em;
+            margin: 0;
+            text-transform: uppercase;
+            color: #A41623; /* Červená z alba */
+            text-shadow: 0 0 10px rgba(164, 22, 35, 0.8), 0 0 20px rgba(164, 22, 35, 0.5); /* Červený neon */
+            font-family: 'Impact', sans-serif; /* Drsné písmo */
+            letter-spacing: 3px;
+        }
+        h2 {
+            font-size: 1.6em;
+            margin: 10px 0;
+            color: #FFC107; /* Žlutá z alba */
+            text-shadow: 0 0 5px rgba(255, 193, 7, 0.5); /* Žlutý stín */
+            font-family: 'Courier New', monospace; /* Tech/glitch vibe */
+            letter-spacing: 1px;
+        }
+        .intro-text {
+            font-size: 1.2em;
+            color: #ccc; /* Světle šedá pro text */
+            margin: 15px 0;
+            text-align: center;
+            font-family: 'Arial', sans-serif;
+            letter-spacing: 1px;
+            border-left: 4px solid #FFC107; /* Žlutý pruh vlevo */
+            border-right: 4px solid #FFC107;
+            padding: 0 10px;
+            background: rgba(255, 193, 7, 0.1); /* Jemný žlutý podklad */
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+            border: 3px solid #A41623; /* Červený rámeček */
+            box-shadow: 0 0 20px rgba(164, 22, 35, 0.6); /* Červený neonový efekt */
+        }
+        .tracklist {
+            margin: 20px 0;
+            padding: 0;
+        }
+        .tracklist h3 {
+            margin-bottom: 10px;
+            font-size: 1.3em;
+            color: #A41623; /* Červená pro nadpisy */
+            text-shadow: 0 0 5px rgba(164, 22, 35, 0.5);
+            font-family: 'Impact', sans-serif;
+        }
+        .tracklist table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        .tracklist th, .tracklist td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #444;
+        }
+        .tracklist th {
+            background-color: #2a2a2a; /* Tmavší šedá */
+            font-weight: bold;
+            color: #FFC107; /* Žlutá pro hlavičky */
+        }
+        .tracklist td {
+            background-color: #222; /* Tmavé pozadí řádků */
+            color: #fff;
+        }
+        .tracklist a {
+            color: #A41623; /* Červená pro odkazy */
+            text-decoration: none;
+        }
+        .tracklist a:hover {
+            text-decoration: underline;
+            text-shadow: 0 0 5px rgba(164, 22, 35, 0.8);
+        }
+        .tracklist .total {
+            font-style: italic;
+            text-align: right;
+            padding-top: 10px;
+            color: #ccc;
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to My Page!</h1>
-    <h2>Podnadpis</h2>
-    <p>This is my first web page using HTML. It's pretty cool!</p>
-    <img src="album-cover.jpeg">
-    <p>
-        <a href="oceneni.html">Oceneni</a>
-    </p>
+    <div class="header">
+        <h1>Vytejte!</h1>
+        <h2>toto je Simonova Prvni Webovka:)</h2>
+        <p class="intro-text">tohle je moje prvni webova stranka zmeruje se na album Jumpout od umelce Osamason</p>
+    </div>
+
+    <img src="album-cover.jpeg" alt="Jumpout album cover">
+
+    <div class="tracklist">
+        <h3>Standard Edition Track Listing</h3>
+        <table>
+            <tr>
+                <th>No.</th>
+                <th>Title</th>
+                <th>Writer(s)</th>
+                <th>Producer(s)</th>
+                <th>Length</th>
+            </tr>
+            <tr>
+                <td>1.</td>
+                <td><a href="https://open.spotify.com/track/7x0D3OXkqJyTk1J7DXzu7J" target="_blank">"Southside"</a></td>
+                <td></td>
+                <td></td>
+                <td>2:12</td>
+            </tr>
+            <tr>
+                <td>2.</td>
+                <td><a href="https://open.spotify.com/track/1nY5cwWTOmHIMcfvBFSJ9q" target="_blank">"Fool"</a></td>
+                <td></td>
+                <td></td>
+                <td>2:05</td>
+            </tr>
+            <tr>
+                <td>3.</td>
+                <td><a href="https://open.spotify.com/track/5um96ix94KTOXJ935WKIb0" target="_blank">"GTFO the Room"</a></td>
+                <td></td>
+                <td></td>
+                <td>2:20</td>
+            </tr>
+            <tr>
+                <td>4.</td>
+                <td><a href="https://open.spotify.com/track/3KkTjm28wxkTEI907W7aTL" target="_blank">"Made Sum Plans"</a></td>
+                <td></td>
+                <td></td>
+                <td>2:07</td>
+            </tr>
+            <tr>
+                <td>5.</td>
+                <td><a href="https://open.spotify.com/track/0g4i6sA9ByfldHKafFMhFp" target="_blank">"Break da News"</a></td>
+                <td></td>
+                <td></td>
+                <td>1:39</td>
+            </tr>
+            <tr>
+                <td>6.</td>
+                <td><a href="https://open.spotify.com/track/0WH5oT0YdaWMqcdAQnYP9q" target="_blank">"Room 156"</a></td>
+                <td></td>
+                <td></td>
+                <td>1:53</td>
+            </tr>
+            <tr>
+                <td>7.</td>
+                <td><a href="https://open.spotify.com/track/6xSXBfVkZn8dtrHpUPZ59w" target="_blank">"Jumpout"</a></td>
+                <td>Middleton, Prosper Iloh</td>
+                <td>OsamaSon, Gyro</td>
+                <td>1:42</td>
+            </tr>
+            <tr>
+                <td>8.</td>
+                <td><a href="https://open.spotify.com/track/1fi0eeunkxxM6tK4L9GRv6" target="_blank">"Going Dumbo"</a></td>
+                <td>Middleton, Keifa Carter, Warren Hunter</td>
+                <td>Legion, Warren</td>
+                <td>1:52</td>
+            </tr>
+            <tr>
+                <td>9.</td>
+                <td><a href="https://open.spotify.com/track/3SWUmSxIrpZ1RmaQzcdLWX" target="_blank">"She Need a Ride"</a></td>
+                <td></td>
+                <td></td>
+                <td>1:44</td>
+            </tr>
+            <tr>
+                <td>10.</td>
+                <td><a href="https://open.spotify.com/track/54Soup1RUGP1Sj3lTlNALI" target="_blank">"New Tune"</a></td>
+                <td>Middleton, Johnny Peng</td>
+                <td>Skai</td>
+                <td>1:53</td>
+            </tr>
+            <tr>
+                <td>11.</td>
+                <td><a href="https://open.spotify.com/track/6rXc19hhRwtLnasVALTOMR" target="_blank">"Waffle House"</a></td>
+                <td></td>
+                <td></td>
+                <td>1:48</td>
+            </tr>
+            <tr>
+                <td>12.</td>
+                <td><a href="https://open.spotify.com/track/0GxvQ4b4s6NipQFWbhss3h" target="_blank">"I Got the Fye"</a></td>
+                <td></td>
+                <td></td>
+                <td>2:31</td>
+            </tr>
+            <tr>
+                <td>13.</td>
+                <td><a href="https://open.spotify.com/track/1sFugCz5ZT9bfWZIuW8XA4" target="_blank">"Insta"</a></td>
+                <td></td>
+                <td></td>
+                <td>2:32</td>
+            </tr>
+            <tr>
+                <td>14.</td>
+                <td><a href="https://open.spotify.com/track/6a9C8zmsv6HEN7z6xLPERn" target="_blank">"Frontin"</a></td>
+                <td></td>
+                <td></td>
+                <td>2:16</td>
+            </tr>
+            <tr>
+                <td>15.</td>
+                <td><a href="https://open.spotify.com/track/6C4tyupVHPv3CZiBEZ24lr" target="_blank">"Mufasa"</a></td>
+                <td></td>
+                <td></td>
+                <td>1:46</td>
+            </tr>
+            <tr>
+                <td>16.</td>
+                <td><a href="https://open.spotify.com/track/5QJLdqxAX0eVMISk49njEt" target="_blank">"Ref"</a></td>
+                <td></td>
+                <td></td>
+                <td>1:29</td>
+            </tr>
+            <tr>
+                <td>17.</td>
+                <td><a href="https://open.spotify.com/track/5wfhBUKK77ESPiu1pBF9Mi" target="_blank">"The Whole World Is Free"</a></td>
+                <td>Middleton, Minnix, Sonny Moore</td>
+                <td></td>
+                <td>1:44</td>
+            </tr>
+            <tr>
+                <td>18.</td>
+                <td><a href="https://open.spotify.com/track/6p2bY0bNqL25O9koN0Dq7S" target="_blank">"Round of Applause"</a></td>
+                <td></td>
+                <td></td>
+                <td>1:57</td>
+            </tr>
+        </table>
+        <p class="total">Total length: 35:30</p>
+
+        <h3>Deluxe Edition Track Listing</h3>
+        <table>
+            <tr>
+                <th>No.</th>
+                <th>Title</th>
+                <th>Writer(s)</th>
+                <th>Producer(s)</th>
+                <th>Length</th>
+            </tr>
+            <tr>
+                <td>19.</td>
+                <td><a href="https://open.spotify.com/track/2vuSEKO2Zf3JNGqwqyJmmx" target="_blank">"Logo" (bonus)</a></td>
+                <td>Middleton, Hunter</td>
+                <td>Warren</td>
+                <td>2:16</td>
+            </tr>
+            <tr>
+                <td>20.</td>
+                <td><a href="https://open.spotify.com/track/5c53wRvjzKaFBPd8cW06EX" target="_blank">"Luv" (bonus)</a></td>
+                <td>Middleton, Carter</td>
+                <td>Legion</td>
+                <td>1:55</td>
+            </tr>
+        </table>
+        <p class="total">Total length: 39:41</p>
+    </div>
+
+    <p><a href="oceneni.html">Oceneni</a></p>
 </body>
 </html>
