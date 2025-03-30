@@ -1,16 +1,322 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Oceneni</title>
+    <title>Oceneni - Jumpout by Osamason</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('https://www.transparenttextures.com/patterns/concrete-wall-2.png'); /* Cracked concrete texture */
+            background-color: #0A0A0A; /* Near-black background */
+            color: #bbb; /* Faded gray text */
+            overflow-x: hidden;
+            position: relative;
+        }
+        /* Blood Drip Animation for Background */
+        @keyframes bloodDrip {
+            0% { transform: translateY(-100%); opacity: 1; }
+            100% { transform: translateY(100vh); opacity: 0.5; }
+        }
+        .blood-drip {
+            position: absolute;
+            top: 0;
+            width: 20px;
+            height: 40px;
+            background: linear-gradient(to bottom, #8B0000, #FF4040); /* Blood gradient */
+            border-radius: 10px;
+            opacity: 0.7;
+            animation: bloodDrip 5s infinite ease-in;
+            z-index: 1;
+        }
+        .blood-drip:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .blood-drip:nth-child(2) { left: 30%; animation-delay: 1s; }
+        .blood-drip:nth-child(3) { left: 50%; animation-delay: 2s; }
+        .blood-drip:nth-child(4) { left: 70%; animation-delay: 3s; }
+        .blood-drip:nth-child(5) { left: 90%; animation-delay: 4s; }
+        .awards-header {
+            text-align: center;
+            padding: 40px;
+            background: #151515; /* Dark charcoal background */
+            border-bottom: 5px solid #8B0000; /* Dark blood red border */
+            box-shadow: 0 0 25px rgba(139, 0, 0, 0.7); /* Deep red neon glow */
+            position: relative;
+            overflow: hidden;
+        }
+        .awards-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/metal-floor.png'); /* Metal texture overlay */
+            opacity: 0.15;
+            z-index: 0;
+        }
+        h1 {
+            font-family: 'Cinzel', serif; /* Gothic vampire font */
+            font-size: 4.5em;
+            margin: 0;
+            text-transform: uppercase;
+            color: #8B0000; /* Dark blood red */
+            text-shadow: 0 0 15px rgba(139, 0, 0, 0.9), 0 0 30px rgba(139, 0, 0, 0.6); /* Neon red glow */
+            letter-spacing: 6px;
+            position: relative;
+            z-index: 1;
+            animation: flicker 3s infinite; /* Flickering neon effect */
+        }
+        h2 {
+            font-family: 'Courier New', monospace; /* Typewriter font for a gritty feel */
+            font-size: 2em;
+            margin: 10px 0;
+            color: #FFD700; /* Gold for a "kingpin" vibe */
+            text-shadow: 0 0 8px rgba(255, 215, 0, 0.7); /* Gold glow */
+            position: relative;
+            z-index: 1;
+            animation: pulse 2s infinite; /* Pulsing effect */
+        }
+        .awards-content {
+            margin: 40px auto;
+            max-width: 800px;
+            padding: 30px;
+            background: rgba(15, 15, 15, 0.9); /* Semi-transparent dark background */
+            border: 4px solid #333; /* Gray, industrial border */
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.9);
+            position: relative;
+            border-image: linear-gradient(to right, #8B0000, #333) 1; /* Gradient border with red */
+        }
+        .awards-content::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            right: -15px;
+            bottom: -15px;
+            border: 3px dashed #8B0000; /* Dashed red border for a "crime scene" vibe */
+            z-index: -1;
+            animation: shake 0.1s infinite; /* Shaking effect */
+        }
+        .awards-content p {
+            font-family: 'Courier New', monospace;
+            font-size: 1.2em;
+            color: #aaa;
+            margin: 15px 0;
+            letter-spacing: 1px;
+            line-height: 1.6;
+            text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+            position: relative;
+            z-index: 1;
+            animation: textGlitch 4s infinite; /* Glitch effect for text */
+        }
+        .awards-content span.highlight {
+            color: #FFD700; /* Gold highlight */
+            font-weight: bold;
+            text-shadow: 0 0 5px rgba(255, 215, 0, 0.6);
+            animation: glow 1.5s infinite; /* Glowing effect */
+        }
+        .awards-content a {
+            color: #8B0000; /* Dark red links */
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+        .awards-content a:hover {
+            text-shadow: 0 0 12px rgba(139, 0, 0, 0.9);
+            color: #FF4040; /* Brighter red on hover */
+        }
+        .back-link {
+            text-align: center;
+            margin: 40px 0;
+            padding: 25px;
+            background: #151515;
+            border-top: 4px solid #8B0000;
+            box-shadow: 0 0 15px rgba(139, 0, 0, 0.4);
+            position: relative;
+        }
+        .back-link a {
+            color: #FFD700; /* Gold back link */
+            text-decoration: none;
+            font-family: 'Courier New', monospace;
+            font-size: 1.4em;
+            text-shadow: 0 0 6px rgba(255, 215, 0, 0.6);
+            transition: all 0.3s ease;
+            animation: bounce 2s infinite; /* Bouncing effect */
+        }
+        .back-link a:hover {
+            text-shadow: 0 0 12px rgba(255, 215, 0, 0.9);
+            color: #FFFFE0; /* Light gold on hover */
+        }
+        /* Gangster and Vampire Elements */
+        .barbed-wire {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 25px;
+            background: url('https://www.transparenttextures.com/patterns/barbed-wire.png');
+            z-index: 2;
+            animation: slide 10s infinite linear; /* Sliding barbed wire */
+        }
+        .graffiti {
+            position: absolute;
+            top: 15px;
+            right: 30px;
+            font-family: 'Cinzel', serif; /* Gothic font for vampire vibe */
+            font-size: 1.8em;
+            color: #8B0000;
+            text-transform: uppercase;
+            transform: rotate(-15deg);
+            text-shadow: 0 0 6px rgba(139, 0, 0, 0.9);
+            z-index: 1;
+            animation: shake 0.2s infinite; /* Shaking graffiti */
+        }
+        /* Grammy Medal and Trophy */
+        .grammy-medal {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: url('https://cdn-icons-png.flaticon.com/512/2589/2589197.png'); /* Placeholder Grammy medal icon */
+            background-size: cover;
+            z-index: 2;
+            animation: spin 5s infinite linear; /* Spinning medal */
+        }
+        .grammy-medal-1 { top: 20px; left: 20px; }
+        .grammy-medal-2 { bottom: 20px; right: 20px; }
+        .trophy {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: url('https://cdn-icons-png.flaticon.com/512/2589/2589197.png'); /* Placeholder trophy icon */
+            background-size: cover;
+            z-index: 2;
+            animation: pulse 2s infinite; /* Pulsing trophy */
+        }
+        .trophy-1 { top: 80px; left: 80px; }
+        .trophy-2 { bottom: 80px; right: 80px; }
+        /* Vampire Elements */
+        .vampire-fangs {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+            background: url('https://cdn-icons-png.flaticon.com/512/2589/2589197.png'); /* Placeholder fangs icon */
+            background-size: cover;
+            z-index: 2;
+            animation: bounce 3s infinite; /* Bouncing fangs */
+        }
+        /* Animations */
+        @keyframes flicker {
+            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+                opacity: 1;
+                text-shadow: 0 0 15px rgba(139, 0, 0, 0.9), 0 0 30px rgba(139, 0, 0, 0.6);
+            }
+            20%, 24%, 55% {
+                opacity: 0.7;
+                text-shadow: 0 0 5px rgba(139, 0, 0, 0.5);
+            }
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            50% { transform: translateX(-2px); }
+            100% { transform: translateX(2px); }
+        }
+        @keyframes textGlitch {
+            0% { transform: translate(0); }
+            2% { transform: translate(-2px, 2px); }
+            4% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+        @keyframes glow {
+            0% { text-shadow: 0 0 5px rgba(255, 215, 0, 0.6); }
+            50% { text-shadow: 0 0 15px rgba(255, 215, 0, 0.9); }
+            100% { text-shadow: 0 0 5px rgba(255, 215, 0, 0.6); }
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        @keyframes slide {
+            0% { background-position: 0 0; }
+            100% { background-position: 100% 0; }
+        }
+        @keyframes smoke {
+            0% { transform: translateY(0) translateX(0); opacity: 0.2; }
+            50% { transform: translateY(-30px) translateX(15px); opacity: 0.4; }
+            100% { transform: translateY(-60px) translateX(-15px); opacity: 0; }
+        }
+        .smoke {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/smoke.png');
+            opacity: 0.2;
+            animation: smoke 8s infinite;
+            z-index: 0;
+        }
+        .bullet-hole {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: url('https://www.transparenttextures.com/patterns/bullet-hole.png');
+            background-size: cover;
+            z-index: 1;
+            animation: pulse 3s infinite; /* Pulsing bullet holes */
+        }
+        .bullet-hole-1 { top: 50px; left: 20px; }
+        .bullet-hole-2 { bottom: 30px; right: 40px; }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel:wght@400;700&display=swap" rel="stylesheet"> <!-- Import Bebas Neue and Cinzel fonts -->
 </head>
 <body>
-    <h1>Oceneni</h1>
-    <h2>Podnadpis</h2>
-    <p>This is my first web page using HTML. It's pretty cool!</p>
-    <img src="album-cover.jpeg">
-    <p>
-        <a href="oceneni.html">Oceneni</a>
-    </p>
+    <div class="blood-drip"></div>
+    <div class="blood-drip"></div>
+    <div class="blood-drip"></div>
+    <div class="blood-drip"></div>
+    <div class="blood-drip"></div>
+    <div class="awards-header">
+        <div class="barbed-wire"></div>
+        <div class="graffiti">Slime Awards</div>
+        <div class="vampire-fangs"></div>
+        <h1>Oceneni</h1>
+        <h2>Jumpout by Osamason</h2>
+    </div>
+
+    <div class="awards-content">
+        <div class="smoke"></div>
+        <div class="bullet-hole bullet-hole-1"></div>
+        <div class="bullet-hole bullet-hole-2"></div>
+        <div class="grammy-medal grammy-medal-1"></div>
+        <div class="grammy-medal grammy-medal-2"></div>
+        <div class="trophy trophy-1"></div>
+        <div class="trophy trophy-2"></div>
+        <p><span class="highlight">Pitchfork hodnocení:</span> Album "Jumpout" získalo od Pitchforku skóre <span class="highlight">8.2/10</span> (3. února 2025). Recenze ho označila za "nejvýbušnější a nejvíce elektrizující dílo a má malé pero" Osamasona a chválila jeho jedinečný zvuk.</p>
+        <p><span class="highlight">Počet streamů:</span> K 29. březnu 2025 má album na Spotify přes <span class="highlight">[500 million]</span> streamů.</p>
+        <p><span class="highlight">Billboard 200:</span> "Jumpout" debutovalo na <span class="highlight">#2</span> v žebříčku Billboard 200 s <span class="highlight">900 000</span> prodanými kusy v prvním týdnu.</p>
+        <p><span class="highlight">Tour:</span> Album doprovází turné, které začíná <span class="highlight">31. března 2025</span> v Seattlu a končí <span class="highlight">10. května 2025</span> v Charlestonu, SC. Více info <a href="https://osamason.com/tour" target="_blank">zde</a>.</p>
+        <p><span class="highlight">Fanouškovské reakce:</span> Fanoušci na sociálních sítích chválí produkci skladeb jako "Round of Applause" a "Waffle House", i když někteří jsou proste hajteři a nechápou nic.</p>
+        <p><span class="highlight">Bonusové skladby:</span> Po vydání alba byly přidány dvě bonusové skladby – "Logo" a "Luv" – dostupné od 30. ledna 2025 na všech platformách, Všechny to jsou Bagry.</p>
+    </div>
+
+    <div class="back-link">
+        <div class="barbed-wire"></div>
+        <a href="index.html">Zpět na hlavní stránku</a>
+    </div>
 </body>
 </html>
-
