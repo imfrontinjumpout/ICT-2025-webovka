@@ -1,219 +1,144 @@
 <!DOCTYPE html>
-<html>
+<html lang="cs">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>O Osamasonovi - Jumpout</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Pirata+One&display=swap');
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Pirata One', cursive;
             margin: 0;
             padding: 0;
-            background: url('https://www.transparenttextures.com/patterns/concrete-wall.png'); /* Cracked concrete texture */
-            background-color: #0D0D0D; /* Almost black background */
-            color: #ccc; /* Faded gray text */
+            background: linear-gradient(45deg, #070050, #1A0000); /* Two-tone fade: near-black to deep blood red */
+            color: #ccc;
             overflow-x: hidden;
         }
         .artist-header {
             text-align: center;
             padding: 30px;
-            background: #1A1A1A; /* Dark charcoal background */
-            border-bottom: 4px solid #7a0000; /* Blood red border */
-            box-shadow: 0 0 20px rgba(178, 34, 34, 0.6); /* Red neon glow */
+            background: linear-gradient(45deg, #7f3cea, #a3070c);
+            border-bottom: 4px solid #7a0000;
+            box-shadow: 0 0 20px rgba(178, 34, 34, 0.6);
             position: relative;
             overflow: hidden;
-        }
-        .artist-header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('https://www.transparenttextures.com/patterns/metal-floor.png'); /* Metal texture overlay */
-            opacity: 0.2;
-            z-index: 0;
+            animation: flicker 3s infinite; /* Flickering header effect */
         }
         h1 {
-            font-family: 'Bebas Neue', sans-serif; /* Bold, distressed font */
-            font-size: 4em;
-            margin: 0;
-            text-transform: uppercase;
-            color: #B22222; /* Blood red */
-            text-shadow: 0 0 15px rgba(178, 34, 34, 0.8), 0 0 30px rgba(178, 34, 34, 0.5); /* Neon red glow */
-            letter-spacing: 5px;
-            position: relative;
-            z-index: 1;
-        }
-        h2 {
-            font-family: 'Courier New', monospace; /* Typewriter font for a gritty feel */
-            font-size: 1.8em;
-            margin: 10px 0;
-            color: #FFD700; /* Gold for a "kingpin" vibe */
-            text-shadow: 0 0 8px rgba(255, 215, 0, 0.6); /* Gold glow */
-            position: relative;
-            z-index: 1;
+            font-family: 'UnifrakturMaguntia', cursive;
+            font-size: 5em;
+            color: #B22222;
+            text-shadow: 0 0 15px rgba(178, 34, 34, 0.8), 0 0 30px rgba(178, 34, 34, 0.5);
         }
         .artist-content {
+            text-align: center;
             margin: 30px auto;
             max-width: 800px;
             padding: 25px;
-            background: rgba(20, 20, 20, 0.9); /* Semi-transparent dark background */
-            border: 3px solid #444; /* Gray, industrial border */
+            background: rgba(20, 20, 20, 0.9);
+            border: 3px solid #444;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
             position: relative;
-            border-image: linear-gradient(to right, #B22222, #444) 1; /* Gradient border with red */
-        }
-        .artist-content::before {
-            content: '';
-            position: absolute;
-            top: -10px;
-            left: -10px;
-            right: -10px;
-            bottom: -10px;
-            border: 2px dashed #3b0084; /* Dashed red border for a "crime scene" vibe */
-            z-index: -1;
         }
         .artist-content p {
-            font-family: 'Courier New', monospace;
-            font-size: 1.1em;
+            font-family: 'Pirata One', cursive;
+            font-size: 1.3em;
             color: #bbb;
-            margin: 15px 0;
-            letter-spacing: 1px;
-            line-height: 1.6;
-            text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
-        }
-        .artist-content span.highlight {
-            color: #eb7200; /* Gold highlight */
-            font-weight: bold;
-            text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
-        }
-        .artist-content a {
-            color: #ff2200; /* Red links */
-            text-decoration: none;
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
-        .artist-content a:hover {
-            text-shadow: 0 0 10px rgba(178, 34, 34, 0.8);
-            color: #FF4040; /* Brighter red on hover */
+            animation: pulse 2s infinite; /* Pulsing text effect */
         }
         .back-link {
             text-align: center;
             margin: 30px 0;
             padding: 20px;
-            background: #1A1A1A;
+            background: linear-gradient(45deg, #7f3cea, #a3070c);
             border-top: 3px solid #B22222;
             box-shadow: 0 0 10px rgba(178, 34, 34, 0.3);
-            position: relative;
         }
         .back-link a {
-            color: #6800b2; /* Gold back link */
+            font-family: 'UnifrakturMaguntia', cursive;
+            color: #FFD700;
+            font-size: 1.5em;
             text-decoration: none;
-            font-family: 'Courier New', monospace;
-            font-size: 1.3em;
-            text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
-            transition: all 0.3s ease;
         }
         .back-link a:hover {
             text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
-            color: #e43100; /* Light gold on hover */
         }
         .back-link img {
             width: 100%;
             max-width: 400px;
             margin-top: 20px;
             border: 3px solid #444;
-            border-radius: 5px;
             box-shadow: 0 0 15px rgba(178, 34, 34, 0.4);
-            filter: grayscale(50%) contrast(120%); /* Gritty image filter */
+            animation: bounce 3s infinite; /* Bouncing image effect */
+        }
+        .button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 15px 30px;
+            background: #7a0000;
+            color: white;
+            font-size: 1.2em;
+            text-decoration: none;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.6);
             transition: all 0.3s ease;
         }
-        .back-link img:hover {
-            filter: grayscale(0%) contrast(150%);
-            box-shadow: 0 0 20px rgba(178, 34, 34, 0.6);
+        .button:hover {
+            background: #2b0097;
+            box-shadow: 0 0 20px rgba(60, 3, 106, 0.9);
+            animation: glow 1s infinite; /* Glowing button effect on hover */
         }
-        .back-link p {
-            font-family: 'Courier New', monospace;
-            font-size: 0.9em;
-            color: #888;
-            margin: 10px 0;
-            text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+        /* Animations */
+        @keyframes flicker {
+            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+                opacity: 1;
+                box-shadow: 0 0 20px rgba(178, 34, 34, 0.6);
+            }
+            20%, 24%, 55% {
+                opacity: 0.8;
+                box-shadow: 0 0 10px rgba(178, 34, 34, 0.3);
+            }
         }
-        .back-link p a {
-            color: #FFD700;
-            text-decoration: none;
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
         }
-        .back-link p a:hover {
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-15px); }
+            60% { transform: translateY(-7px); }
         }
-        /* Additional Gangster Elements */
-        .barbed-wire {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 20px;
-            background: url('https://www.transparenttextures.com/patterns/barbed-wire.png');
-            z-index: 2;
-        }
-        .graffiti {
-            position: absolute;
-            top: 10px;
-            right: 20px;
-            font-family: 'Impact', sans-serif;
-            font-size: 1.5em;
-            color: #B22222;
-            text-transform: uppercase;
-            transform: rotate(-10deg);
-            text-shadow: 0 0 5px rgba(178, 34, 34, 0.8);
-            z-index: 1;
-        }
-        /* Smoke Animation */
-        @keyframes smoke {
-            0% { transform: translateY(0) translateX(0); opacity: 0.3; }
-            50% { transform: translateY(-20px) translateX(10px); opacity: 0.5; }
-            100% { transform: translateY(-40px) translateX(-10px); opacity: 0; }
-        }
-        .smoke {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('https://www.transparenttextures.com/patterns/smoke.png');
-            opacity: 0.3;
-            animation: smoke 10s infinite;
-            z-index: 0;
+        @keyframes glow {
+            0% { box-shadow: 0 0 10px rgba(255, 0, 0, 0.6); }
+            50% { box-shadow: 0 0 20px rgba(255, 0, 0, 0.9); }
+            100% { box-shadow: 0 0 10px rgba(255, 0, 0, 0.6); }
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet"> <!-- Import Bebas Neue font -->
 </head>
 <body>
     <div class="artist-header">
-        <div class="barbed-wire"></div>
-        <div class="graffiti">Slime Kings</div>
         <h1>Osamason</h1>
         <h2>Slime King z Virginie</h2>
     </div>
     <div class="artist-content">
-        <div class="smoke"></div>
-        <p><span class="highlight">Kdo je Osamason:</span> Osamason je americký rapper, zpěvák a producent pocházející z Virginie. Narodil se v roce <span class="highlight">2002</span> a na scéně se poprvé objevil kolem roku 2022 s mixtapem "Slime Love."</p>
-        <p><span class="highlight">Kariéra:</span> Proslavil se v undergroundové trapové komunitě díky svému mixtapu "Flex Musix" (2023), kde hodně "flexoval" jak divý a kde spojil tvrdé beaty s hypnotickými vokály. Album "Jumpout" (vydané <span class="highlight">24. ledna 2025</span>) ho posunulo do širšího povědomí s <span class="highlight">420 000 prodanými kusy</span> v prvním týdnu.</p>
-        <p><span class="highlight">Styl:</span> Jeho hudba je syrová, energická a plná "slime" estetiky – hluboké basy, autotune a minimalistické, ale chytlavé texty. Často ho přirovnávají k Elvisovy nebo i Alahovy, ale Osamason je víc než oba dohromady.</p>
-        <p><span class="highlight">Vlivy:</span> Inspiruje se jižanským rapem, zejména z Atlanty, a producenty jako MexikoDro nebo Working on Dying. Jeho produkce na "Jumpout" (společně s Gyrem a Legionem) je důkazem že má malé pero ale velký talent v studiu.</p>
-        <p><span class="highlight">Zajímavosti:</span> Osamason je známý svým tajemným image – málokdy dává rozhovory a jeho sociální sítě jsou plné videí gde má malé pero. Fanoušci milují jeho malé pero (neboli jeho propisku kterou pise svoje texty).</p>
-        <p><span class="highlight">Sociální sítě:</span> Sleduj ho na <td><a href="https://www.instagram.com/osamason/?hl=en" target="_blank">"Instagramu</a></td> 
-    </div>
+        <p><strong>Kdo je Osamason:</strong> Osamason je americký rapper, 
+            Osamason, jehož skutečné jméno je Amari Deshawn Middleton, se narodil 20. května 2003.</p>
+        <p><strong>Kariéra:</strong> Proslavil se v undergroundové trapové komunitě kvuli jeho malemu peru a velkemu talentu</p>
+        <p><strong>Styl:</strong> Jeho hudba je syrová, energická a plná slime slime slime slime slime slime gang gang GTFOTR a frontovani fenomen kdy se snazis oliznout nohy pri frontflipu</p>
+        <p><strong>Vlivy:</strong> Inspiruje se jižanským rapem a polskou DnB music zejmena "Doktorem VODKA" 
+        <p><strong>Zajímavosti:</strong> Jeho hudba, charakterizovaná „slime“ estetikou a „rage beats“ subžánrem, je známá svou intenzitou a energickým zvukem, což mu přineslo silnou fanouškovskou základnu.
 
+        </p>
+    </div>
     <div class="back-link">
-        <div class="barbed-wire"></div>
-        <a href="index.html">Zpět na hlavní stránku</a>
-        <img src="Osama bin laden picture.png" alt="Osama son v 15 letech">
+        <img src="Osama bin laden picture.png" alt="Osamason v 15 letech">
         <p>Osamason v 15 letech</p>
-        <p>Zdroj: <a href="https://www.google.com/search?q=dancing+cow+dancing+polish+cow+lyrics&sca_esv=7ac46bb0b9bbc880&rlz=1C5CHFA_enUS1076US1076&ei=6FrpZ4LAJ5u7i-gPuIuFiAE&oq=dancing+cow&gs_lp=Egxnd3Mtd2l6LXNlcnAiC2RhbmNpbmcgY293KgIIADIFEAAYgAQyBRAAGIAEMgUQLhiABDIFEC4YgAQyBRAAGIAEMgUQABiABDIFEAAYgAQyBRAAGIAEMgUQABiABDIFEAAYgARI01FQrgRYpzxwAngBkAEBmAHCAaABtRCqAQQxMS44uAEByAEA-AEBmAIMoALwC6gCAMICChAAGIAEGEMYigXCAg0QABiABBhDGMcDGIoFwgILEC4YgAQY0QMYxwHCAgsQLhiABBjHARivAcICChAuGIAEGEMYigXCAggQLhiABBjUAsICGRAuGIAEGEMYigUYlwUY3AQY3gQY3wTYAQHCAg0QABiABBhDGMkDGIoFwgILEAAYgAQYkgMYigXCAhEQLhiABBjHARiYBRiZBRivAcICKxAuGIAEGEMYigUYlwUY3AQY3gQY4AQY9AMY8QMY9QMY9gMY9wMY-APYAQGYAwHxBWM7DbWkOlcCiAYBugYGCAEQARgUkgcFMi45LjGgB9-8Ag&sclient=gws-wiz-serp#fpstate=ive&vld=cid:32d3daa7,vid:OyDyOweu-PA,st:0" target="_blank">Image source</a></p>
+        <p>Zdroj: <a href="#">Image source</a></p>
         <p>Poznámka: Tento obrázek je fiktivní a slouží pouze pro ilustraci.</p>
         <p>Všechny informace jsou fiktivní a slouží pouze pro účely této stránky.</p>
-        <p>Pokud chceš vědět víc o Osamasonovi, navštiv jeho <a href="https://yoyoHQ.com" target="_blank">oficiální stránku</a>.</p>
-        <p>Všechny informace jsou fiktivní a slouží pouze pro účely této stránky.</p> 
+        <p>Pokud chceš vědět víc o Osamasonovi, navštiv jeho <a href="#">oficiální stránku</a>.</p>
+        <a class="button" href="index.html">Zpět na hlavní stránku</a>
     </div>
 </body>
 </html>
